@@ -31,6 +31,10 @@ urlpatterns = [
     path("", include('errorcode.urls')),
     path("", include('finance.urls')),
     path("", include('routing.urls')),
+    path("", include('webhook.urls')),
+    path("", include('aux.urls')),
+
+
 
 
 

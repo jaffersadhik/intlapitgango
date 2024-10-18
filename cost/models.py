@@ -14,7 +14,7 @@ class CostCarrier(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.cost_id)
 
 
 
@@ -32,7 +32,7 @@ class CostCarrierInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.cost_id
+        return str(self.cost_id)
 
 
 
@@ -51,7 +51,7 @@ class CostCarrierMncmcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.cost_id
+        return str(self.cost_id)
 
 
 
@@ -71,7 +71,7 @@ class CostCarrierMncmccInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.cost_id
+        return str(self.cost_id)
 
 
 
@@ -88,7 +88,7 @@ class CostSMSC(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.cost_id
+        return str(self.cost_id)
 
 
 
@@ -106,7 +106,7 @@ class CostSMSCInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.cost_id)
 
 
 class CostSMSCmncmcc(models.Model):
@@ -124,7 +124,7 @@ class CostSMSCmncmcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.cost_id
+        return str(self.cost_id)
     
 
 class CostSMSCmncmccInvoiceDate(models.Model):
@@ -143,5 +143,5 @@ class CostSMSCmncmccInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.cost_id
+        return str(self.cost_id)
 

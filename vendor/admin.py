@@ -8,5 +8,5 @@ class CarrierAdmin(admin.ModelAdmin):
 
 @admin.register(SMSC)
 class SMSCAdmin(admin.ModelAdmin):
-    list_display = ( 'created_date', 'ip', 'mode', 'password', 'port', 'securelevel', 'smscid', 'tps', 'update_date', 'username', 'carriername', 'dial_in_code', 'currencycode', 'routetype', 'smstype', 'timezone_id')
-    search_fields = ( 'ip', 'mode', 'smscid', 'carriername', 'dial_in_code', 'currencycode', 'routetype', 'smstype', 'timezone_id')
+    list_display = ('created_date', 'smscid', 'carriername', 'routetype', 'dial_in_code', 'currencycode', 'smstype', 'timezone_id', 'mode')
+    search_fields = ('smscid', 'carriername', 'dial_in_code', 'currencycode', 'routetype', 'smstype', 'timezone_id')

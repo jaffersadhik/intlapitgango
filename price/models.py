@@ -13,7 +13,7 @@ class PriceAccount(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.ipaccount_id
+        return str(self.price_id)
 
 
 class PriceAccountInvoiceDate(models.Model):
@@ -30,7 +30,7 @@ class PriceAccountInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.ipaccount_id
+        return str(self.price_id)
 
 
 class PriceAccountMncmcc(models.Model):
@@ -48,7 +48,7 @@ class PriceAccountMncmcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 class PriceAccountMncmccInvoiceDate(models.Model):
@@ -67,7 +67,7 @@ class PriceAccountMncmccInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 class PriceCustomer(models.Model):
@@ -83,7 +83,7 @@ class PriceCustomer(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 class PriceCustomerInvoiceDate(models.Model):
@@ -100,7 +100,7 @@ class PriceCustomerInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 class PriceCustomerMncmcc(models.Model):
@@ -118,7 +118,7 @@ class PriceCustomerMncmcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 class PriceCustomerMncmccInvoiceDate(models.Model):
@@ -137,7 +137,7 @@ class PriceCustomerMncmccInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 class PriceShared(models.Model):
@@ -152,7 +152,7 @@ class PriceShared(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
     
 class PriceSharedInvoiceDate(models.Model):
     price_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) #cost id name 
@@ -167,7 +167,7 @@ class PriceSharedInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 class PriceSharedMncmcc(models.Model):
@@ -184,7 +184,7 @@ class PriceSharedMncmcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)
 
 
 
@@ -203,4 +203,4 @@ class PriceSharedMncmccInvoiceDate(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.price_id
+        return str(self.price_id)

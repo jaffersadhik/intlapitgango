@@ -12,7 +12,7 @@ class IpAccount(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.ipaccount_id
+        return str(self.ipaccount_id)
 
 
 class IpCustomer(models.Model):
@@ -27,7 +27,7 @@ class IpCustomer(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.ipcustomer_id
+        return str(self.ipcustomer_id)
 
 
 class IpShared(models.Model):
@@ -41,4 +41,4 @@ class IpShared(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.ip_id
+        return str(self.ip_id)

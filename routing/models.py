@@ -12,7 +12,7 @@ class Route(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.route_id
+        return str(self.route_id)
     
 
 from django.db import models
@@ -32,7 +32,7 @@ class RouteAccount(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.routemapping_id
+        return str(self.routemapping_id)
     
 from django.db import models
 
@@ -53,7 +53,7 @@ class RouteAccountMncmcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.routemapping_id
+        return str(self.routemapping_id)
 
 class RouteCustomer(models.Model):
     routemapping_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -70,7 +70,7 @@ class RouteCustomer(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.routemapping_id
+        return str(self.routemapping_id)
     
 
 class RouteCustomerMncMcc(models.Model):
@@ -90,7 +90,7 @@ class RouteCustomerMncMcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.routemapping_id
+        return str(self.routemapping_id)
 
 from django.db import models
 
@@ -108,7 +108,7 @@ class RouteShared(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.routemapping_id
+        return str(self.routemapping_id)
 
 from django.db import models
 
@@ -128,4 +128,4 @@ class RouteSharedMncmcc(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.routemapping_id
+        return str(self.routemapping_id)

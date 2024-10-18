@@ -14,7 +14,7 @@ class WebhookAccount(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.webhookaccount_id
+        return str(self.webhookaccount_id)
 
 
 
@@ -32,7 +32,7 @@ class WebhookCustomer(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.webhookcustomer_id
+        return str(self.webhookcustomer_id)
 
 
 class WebhookParameterIndex(models.Model):
@@ -47,4 +47,4 @@ class WebhookParameterIndex(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.webhookaccount_id
+        return str(self.webhookparameter_id)

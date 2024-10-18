@@ -13,7 +13,7 @@ class SenderIdAccount(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.accountsenderid_id
+        return str(self.accountsenderid_id)
 
 class SenderIdCustomer(models.Model):
     customersenderid_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -27,7 +27,7 @@ class SenderIdCustomer(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.customersenderid_id
+        return str(self.customersenderid_id)
     
 
 class SenderIdShared(models.Model):
@@ -41,4 +41,4 @@ class SenderIdShared(models.Model):
         managed = False  # Prevents Django from creating or modifying the table
 
     def __str__(self):
-        return self.senderid_id
+        return str(self.senderid_id)
