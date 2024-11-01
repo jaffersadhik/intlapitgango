@@ -156,7 +156,7 @@ class CompanyListView(APIView):
                 Q(email__icontains=search_query)
             )
         else:
-            companies = Company.objects.all().order_by('-company_id')
+            companies = Company.objects.all().order_by('-update_date', '-create_date')
 
         paginator = Paginator(companies, page_size)
         paginated_companies = paginator.get_page(page)
