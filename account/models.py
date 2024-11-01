@@ -29,6 +29,7 @@ class Account(models.Model):
     status = models.CharField(max_length=255)
     timezone_id = models.CharField(max_length=255)
     errorcode_type = models.CharField(max_length=255, blank=True, null=True)  # New field added
+    cluster = models.CharField(max_length=255, blank=True, null=True)  # New field added
 
     class Meta:
         db_table = 'account'  # This specifies the exact MySQL table name

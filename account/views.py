@@ -28,7 +28,7 @@ class AccountListView(APIView):
                     Q(emailstatus__icontains=search_query)
                 )
             else:
-                accounts = Account.objects.all().order_by('-account_id')
+                accounts = Account.objects.all().order_by('-update_date', '-created_date')
 
             paginator = Paginator(accounts, page_size)
             paginated_accounts = paginator.get_page(page)
@@ -51,7 +51,7 @@ class AccountListView(APIView):
 class AccountCreateView(APIView):
     def post(self, request):
         data = request.data.copy()
-        required_fields = ['loginpassword', 'username',  'password', 'dial_in_code', 'currencycode', 'customer_id', 'ipcheck', 'mncmcccheck', 'pricecheck', 'protocol', 'routecheck', 'routetype', 'senderidcheck', 'smstype', 'status', 'timezone_id','errorcode_type']
+        required_fields = ['loginpassword', 'username',  'password', 'dial_in_code', 'currencycode', 'customer_id', 'ipcheck', 'mncmcccheck', 'pricecheck', 'protocol', 'routecheck', 'routetype', 'senderidcheck', 'smstype', 'status', 'timezone_id','errorcode_type','cluster']
 
         # Check for missing required fields
         for field in required_fields:
