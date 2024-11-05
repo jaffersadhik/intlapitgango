@@ -33,12 +33,5 @@ urlpatterns = [
     path("", include('routing.urls')),
     path("", include('webhook.urls')),
     path("", include('aux.urls')),
-
-
-
-
-
-
-
-
-]
+    path("", include('authentication.urls')),
+    ]

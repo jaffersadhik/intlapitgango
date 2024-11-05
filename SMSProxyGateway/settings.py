@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,14 +28,13 @@ SECRET_KEY = "django-insecure-vb($mhtncaa1jh^t^pyf%%*1x8fzmd3t5q3o*vn)b_lm-&d85v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     "jazzmin",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -56,6 +58,9 @@ INSTALLED_APPS = [
     "aux",
     "container",
     "rest_framework",
+    "authentication",
+    'rest_framework_simplejwt.token_blacklist',
+
 
 ]
 
@@ -67,19 +72,28 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3001",
-    "http://localhost:3000",
-    "http://localhost:3002",
-    "http://localhost:3003",
+REST_FRAMEWORK = {
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+      ],
+}
 
+SIMPLE_JWT = {
+     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+     'ROTATE_REFRESH_TOKENS': True,
+     'BLACKLIST_AFTER_ROTATION': True
+}
 
-
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3001",
+#     "http://localhost:3000",
+#     "http://localhost:3002",
+#     "http://localhost:3003",
+# ]
 CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "SMSProxyGateway.urls"
@@ -105,15 +119,20 @@ WSGI_APPLICATION = "SMSProxyGateway.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+print(config('DB_NAME'))
+print(config('DB_USER'))
+print(config('DB_PASSWORD'))
+print(config('DB_HOST'))
+print(config('DB_PORT'))
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gw_new_db',  # The database name
-        'USER': 'root',       # The MySQL username
-        'PASSWORD': 'W7301@jqir#',   # The MySQL password
-        'HOST': 'localhost',     # The MySQL host (e.g., localhost or a server IP)
-        'PORT': '3306',                # The MySQL port (default is 3306)
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': 'W7301@jqir#',
+        'HOST': 'host.docker.internal',  
+        'PORT': config('DB_PORT'),   
     }
 }
 

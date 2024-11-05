@@ -24,7 +24,7 @@ class AccountListView(APIView):
 
             if search_query:
                 accounts = Account.objects.filter(
-                    Q(username__icontains=search_query) |  # Add fields you want to search
+                    Q(username__icontains=search_query) |  
                     Q(emailstatus__icontains=search_query)
                 )
             else:
