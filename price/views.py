@@ -41,9 +41,11 @@ from .serializers import (
     PriceSharedMncmccSerializer,
     PriceSharedMncmccInvoiceDateSerializer
 )
+from rest_framework.permissions import IsAuthenticated
 
 # ---- PriceAccount Views ----
 class PriceAccountListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -66,6 +68,7 @@ class PriceAccountListView(APIView):
         })
 
 class PriceAccountCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -99,6 +102,7 @@ class PriceAccountCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceAccountUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()  # Create a copy of the request data
 
@@ -126,6 +130,7 @@ class PriceAccountUpdateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # ---- PriceAccountInvoiceDate Views ----
 class PriceAccountInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -148,6 +153,7 @@ class PriceAccountInvoiceDateListView(APIView):
         })
 
 class PriceAccountInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = PriceAccountInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -156,6 +162,7 @@ class PriceAccountInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceAccountInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         price_id = request.data.get('price_id')  # Get price_id from request data
         invoice_date = get_object_or_404(PriceAccountInvoiceDate, price_id=price_id)  # Retrieve the invoice date using the price_id
@@ -167,6 +174,7 @@ class PriceAccountInvoiceDateUpdateView(APIView):
 
 # ---- PriceAccountMncmcc Views ----
 class PriceAccountMncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -190,6 +198,7 @@ class PriceAccountMncmccListView(APIView):
         })
 
 class PriceAccountMncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -225,6 +234,7 @@ class PriceAccountMncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceAccountMncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -264,6 +274,7 @@ class PriceAccountMncmccUpdateView(APIView):
 
 # ---- PriceAccountMncmccInvoiceDate Views ----
 class PriceAccountMncmccInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -286,6 +297,7 @@ class PriceAccountMncmccInvoiceDateListView(APIView):
         })
 
 class PriceAccountMncmccInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = PriceAccountMncmccInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -294,6 +306,7 @@ class PriceAccountMncmccInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceAccountMncmccInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         price_id = request.data.get('price_id')  # Get price_id from request data
         mncmcc_invoice_date = get_object_or_404(PriceAccountMncmccInvoiceDate, price_id=price_id)  # Retrieve the invoice date using the price_id
@@ -305,6 +318,7 @@ class PriceAccountMncmccInvoiceDateUpdateView(APIView):
 
 # ---- PriceCustomer Views ----
 class PriceCustomerListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -327,6 +341,7 @@ class PriceCustomerListView(APIView):
         })
 
 class PriceCustomerCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -346,6 +361,7 @@ class PriceCustomerCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceCustomerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         price_id = request.data.get('price_id')  # Get price_id from request data
         customer = get_object_or_404(PriceCustomer, price_id=price_id)  # Retrieve the customer using the price_id
@@ -357,6 +373,7 @@ class PriceCustomerUpdateView(APIView):
 
 # ---- PriceCustomerInvoiceDate Views ----
 class PriceCustomerInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -379,6 +396,7 @@ class PriceCustomerInvoiceDateListView(APIView):
         })
 
 class PriceCustomerInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = PriceCustomerInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -387,6 +405,7 @@ class PriceCustomerInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceCustomerInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         price_id = request.data.get('price_id')  # Get price_id from request data
         invoice_date = get_object_or_404(PriceCustomerInvoiceDate, price_id=price_id)  # Retrieve the invoice date using the price_id
@@ -402,6 +421,7 @@ class PriceCustomerInvoiceDateUpdateView(APIView):
 
 # PriceCustomerMncmcc Views
 class PriceCustomerMncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -425,6 +445,7 @@ class PriceCustomerMncmccListView(APIView):
 
 
 class PriceCustomerMncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -445,6 +466,7 @@ class PriceCustomerMncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceCustomerMncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
 
         price_id = request.data.get('price_id')  # Get price_id from request data
@@ -459,12 +481,14 @@ class PriceCustomerMncmccUpdateView(APIView):
 
 # PriceCustomerMncmccInvoiceDate Views
 class PriceCustomerMncmccInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         invoice_dates = PriceCustomerMncmccInvoiceDate.objects.all()
         serializer = PriceCustomerMncmccInvoiceDateSerializer(invoice_dates, many=True)
         return Response(serializer.data)
 
 class PriceCustomerMncmccInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = PriceCustomerMncmccInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -473,6 +497,7 @@ class PriceCustomerMncmccInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceCustomerMncmccInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         price_id = request.data.get('price_id')  # Get price_id from request data
         invoice_date = get_object_or_404(PriceCustomerMncmccInvoiceDate, price_id=price_id)  # Retrieve the invoice date using the price_id
@@ -484,6 +509,7 @@ class PriceCustomerMncmccInvoiceDateUpdateView(APIView):
 
 # PriceShared Views
 class PriceSharedListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -507,6 +533,7 @@ class PriceSharedListView(APIView):
 
 
 class PriceSharedCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -525,6 +552,7 @@ class PriceSharedCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceSharedUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         # Copy request data and add update_date field
         data = request.data.copy()
@@ -561,12 +589,14 @@ class PriceSharedUpdateView(APIView):
 
 # PriceSharedInvoiceDate Views
 class PriceSharedInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         invoice_dates = PriceSharedInvoiceDate.objects.all()
         serializer = PriceSharedInvoiceDateSerializer(invoice_dates, many=True)
         return Response(serializer.data)
 
 class PriceSharedInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = PriceSharedInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -575,6 +605,7 @@ class PriceSharedInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceSharedInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         price_id = request.data.get('price_id')  # Get price_id from request data
         invoice_date = get_object_or_404(PriceSharedInvoiceDate, price_id=price_id)  # Retrieve the invoice date using the price_id
@@ -586,6 +617,7 @@ class PriceSharedInvoiceDateUpdateView(APIView):
 
 # PriceSharedMncmcc Views
 class PriceSharedMncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -609,6 +641,7 @@ class PriceSharedMncmccListView(APIView):
 
 
 class PriceSharedMncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -629,6 +662,7 @@ class PriceSharedMncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceSharedMncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['update_date'] = datetime.now().isoformat()
@@ -665,12 +699,14 @@ class PriceSharedMncmccUpdateView(APIView):
 
 # PriceSharedMncmccInvoiceDate Views
 class PriceSharedMncmccInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         invoice_dates = PriceSharedMncmccInvoiceDate.objects.all()
         serializer = PriceSharedMncmccInvoiceDateSerializer(invoice_dates, many=True)
         return Response(serializer.data)
 
 class PriceSharedMncmccInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = PriceSharedMncmccInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -679,6 +715,7 @@ class PriceSharedMncmccInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PriceSharedMncmccInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         price_id = request.data.get('price_id')  # Get price_id from request data
         invoice_date = get_object_or_404(PriceSharedMncmccInvoiceDate, price_id=price_id)  # Retrieve the invoice date using the price_id

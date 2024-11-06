@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
 from datetime import datetime
+from rest_framework.permissions import IsAuthenticated
 
 from .models import (
     CostCarrier,
@@ -29,6 +30,8 @@ from .serializers import (
 
 # ---- CostCarrier Views ----
 class CostCarrierListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -54,6 +57,8 @@ class CostCarrierListView(APIView):
         })
 
 class CostCarrierCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         # Set created_date to the current datetime in ISO format
         request.data['created_date'] = datetime.now().isoformat()
@@ -75,6 +80,8 @@ class CostCarrierCreateView(APIView):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class CostCarrierUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         data = request.data.copy()
         data['update_date'] = datetime.now().isoformat()  # Set the current time for update_date
@@ -100,6 +107,8 @@ class CostCarrierUpdateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # ---- CostCarrierInvoiceDate Views ----
 class CostCarrierInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -124,6 +133,8 @@ class CostCarrierInvoiceDateListView(APIView):
         })
 
 class CostCarrierInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         serializer = CostCarrierInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -132,6 +143,8 @@ class CostCarrierInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CostCarrierInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         price_id = request.data.get('price_id')
         invoice_date = get_object_or_404(CostCarrierInvoiceDate, price_id=price_id)
@@ -143,6 +156,8 @@ class CostCarrierInvoiceDateUpdateView(APIView):
 
 # ---- CostCarrierMncmcc Views ----
 class CostCarrierMncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -167,6 +182,8 @@ class CostCarrierMncmccListView(APIView):
         })
 
 class CostCarrierMncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         request.data['created_date'] = datetime.now().isoformat()
 
@@ -188,6 +205,8 @@ class CostCarrierMncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CostCarrierMncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         data = request.data.copy()
         data['update_date'] = datetime.now().isoformat()  # Set the current time for update_date
@@ -216,6 +235,8 @@ class CostCarrierMncmccUpdateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # ---- CostCarrierMncmccInvoiceDate Views ----
 class CostCarrierMncmccInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -240,6 +261,8 @@ class CostCarrierMncmccInvoiceDateListView(APIView):
         })
 
 class CostCarrierMncmccInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         serializer = CostCarrierMncmccInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -248,6 +271,8 @@ class CostCarrierMncmccInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CostCarrierMncmccInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         cost_id = request.data.get('cost_id')
         invoice_date = get_object_or_404(CostCarrierMncmccInvoiceDate, cost_id=cost_id)
@@ -259,6 +284,8 @@ class CostCarrierMncmccInvoiceDateUpdateView(APIView):
 
 # ---- CostSMSC Views ----
 class CostSMSCListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -283,6 +310,8 @@ class CostSMSCListView(APIView):
         })
 
 class CostSMSCCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         request.data['created_date'] = datetime.now().isoformat()
 
@@ -301,6 +330,8 @@ class CostSMSCCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CostSMSCUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         data = request.data.copy()
         data['update_date'] = datetime.now().isoformat()  # Set the current time for update_date
@@ -324,6 +355,8 @@ class CostSMSCUpdateView(APIView):
 
 # ---- CostSMSCInvoiceDate Views ----
 class CostSMSCInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -348,6 +381,8 @@ class CostSMSCInvoiceDateListView(APIView):
         })
 
 class CostSMSCInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         serializer = CostSMSCInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -356,6 +391,8 @@ class CostSMSCInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CostSMSCInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         price_id = request.data.get('price_id')
         invoice_date = get_object_or_404(CostSMSCInvoiceDate, price_id=price_id)
@@ -367,6 +404,8 @@ class CostSMSCInvoiceDateUpdateView(APIView):
 
 # ---- CostSMSCmncmcc Views ----
 class CostSMSCmncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -391,6 +430,8 @@ class CostSMSCmncmccListView(APIView):
         })
 
 class CostSMSCmncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         request.data['created_date'] = datetime.now().isoformat()
         serializer = CostSMSCmncmccSerializer(data=request.data)
@@ -410,6 +451,8 @@ class CostSMSCmncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CostSMSCmncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         # Create a mutable copy of the request data
         data = request.data.copy()
@@ -443,6 +486,8 @@ class CostSMSCmncmccUpdateView(APIView):
 
 # ---- CostSMSCmncmccInvoiceDate Views ----
 class CostSMSCmncmccInvoiceDateListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         search_query = request.GET.get('search', '')
         page = request.GET.get('page', 1)
@@ -467,6 +512,8 @@ class CostSMSCmncmccInvoiceDateListView(APIView):
         })
 
 class CostSMSCmncmccInvoiceDateCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         serializer = CostSMSCmncmccInvoiceDateSerializer(data=request.data)
         if serializer.is_valid():
@@ -475,6 +522,8 @@ class CostSMSCmncmccInvoiceDateCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CostSMSCmncmccInvoiceDateUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         cost_id = request.data.get('cost_id')
         invoice_date = get_object_or_404(CostSMSCmncmccInvoiceDate, cost_id=cost_id)

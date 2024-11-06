@@ -8,10 +8,13 @@ from datetime import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
 import base64
+from rest_framework.permissions import IsAuthenticated
+
 
 # ---- SenderIdAccount Views ----
 
 class SenderIdAccountListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # Fetch query parameters for pagination and search
         page = request.GET.get('page', 1)
@@ -43,6 +46,7 @@ class SenderIdAccountListView(APIView):
         })
 
 class SenderIdAccountCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -77,6 +81,7 @@ class SenderIdAccountCreateView(APIView):
 
 
 class SenderIdAccountUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         account_id = data.get('accountsenderid_id')
@@ -119,6 +124,7 @@ class SenderIdAccountUpdateView(APIView):
 # ---- SenderIdCustomer Views ----
 
 class SenderIdCustomerListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # Fetch query parameters for pagination and search
         page = request.GET.get('page', 1)
@@ -150,6 +156,7 @@ class SenderIdCustomerListView(APIView):
         })
 
 class SenderIdCustomerCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -176,6 +183,7 @@ class SenderIdCustomerCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SenderIdCustomerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         customer_id = data.get('customersenderid_id')
@@ -205,6 +213,7 @@ class SenderIdCustomerUpdateView(APIView):
 
 # ---- SenderIdShared Views ----
 class SenderIdSharedListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # Fetch query parameters for pagination and search
         page = request.GET.get('page', 1)
@@ -235,6 +244,7 @@ class SenderIdSharedListView(APIView):
             'total_items': paginator.count
         })
 class SenderIdSharedCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -260,6 +270,7 @@ class SenderIdSharedCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SenderIdSharedUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         shared_id = data.get('senderid_id')

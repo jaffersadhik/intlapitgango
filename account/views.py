@@ -8,10 +8,11 @@ from datetime import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
 import base64
-
+from rest_framework.permissions import IsAuthenticated
 # ---- Account Views ----
 
 class AccountListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         all_accounts = request.GET.get('all', False)
         
@@ -49,6 +50,7 @@ class AccountListView(APIView):
 
     
 class AccountCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         required_fields = ['loginpassword', 'username',  'password', 'dial_in_code', 'currencycode', 'customer_id', 'ipcheck', 'mncmcccheck', 'pricecheck', 'protocol', 'routecheck', 'routetype', 'senderidcheck', 'smstype', 'status', 'timezone_id','errorcode_type','cluster']
@@ -93,6 +95,7 @@ class AccountCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AccountUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     required_fields = ['loginpassword', 'username', 'password', 'dial_in_code', 'currencycode', 'customer_id', 'ipcheck', 'mncmcccheck', 'pricecheck', 'protocol', 'routecheck', 'routetype', 'senderidcheck', 'smstype', 'status', 'timezone_id','errorcode_type']
 
     def validate_and_decode(self, data):
@@ -145,6 +148,7 @@ class AccountUpdateView(APIView):
 # ---- Company Views ----
 
 class CompanyListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -170,6 +174,7 @@ class CompanyListView(APIView):
         })
 
 class CompanyCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -204,6 +209,7 @@ class CompanyCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class CompanyUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         company_id = data.get('company_id')
@@ -244,6 +250,7 @@ class CompanyUpdateView(APIView):
 # ---- Customer Views ----
 
 class CustomerListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         all_customers = request.GET.get('all', False)
 
@@ -282,6 +289,7 @@ class CustomerListView(APIView):
 
 
 class CustomerCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         required_fields = ['companyname', 'email', 'mobile', 'customername']
@@ -338,6 +346,7 @@ class CustomerCreateView(APIView):
 
 
 class CustomerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         customer_id = data.get('customer_id')

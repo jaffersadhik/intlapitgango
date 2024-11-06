@@ -130,9 +130,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
-        'PASSWORD': 'W7301@jqir#',
-        'HOST': 'host.docker.internal',  
-        'PORT': config('DB_PORT'),   
+        'PASSWORD': 'W7301@jqir#', 
+        'HOST': config('DB_HOST'), 
+        'PORT': config('DB_PORT'),  
     }
 }
 

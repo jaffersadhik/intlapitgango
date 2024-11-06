@@ -14,9 +14,11 @@ from .serializers import (
 )
 import base64
 from datetime import datetime
+from rest_framework.permissions import IsAuthenticated
 
 # Route Views
 class RouteListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -33,6 +35,7 @@ class RouteListView(APIView):
         })
 
 class RouteCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         routename = data.get('routename')
@@ -52,6 +55,7 @@ class RouteCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RouteUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         route_id = data.get('route_id')
@@ -72,6 +76,7 @@ class RouteUpdateView(APIView):
 
 # RouteAccount Views
 class RouteAccountListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -88,6 +93,7 @@ class RouteAccountListView(APIView):
         })
 
 class RouteAccountCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         try:
@@ -107,6 +113,7 @@ class RouteAccountCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RouteAccountUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         
@@ -135,6 +142,7 @@ class RouteAccountUpdateView(APIView):
 
 # RouteAccountMncmcc Views
 class RouteAccountMncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -151,6 +159,7 @@ class RouteAccountMncmccListView(APIView):
         })
 
 class RouteAccountMncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         try:
@@ -169,6 +178,7 @@ class RouteAccountMncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RouteAccountMncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         routemapping_id = data.get('routemapping_id')
@@ -195,6 +205,7 @@ class RouteAccountMncmccUpdateView(APIView):
 
 # RouteCustomer Views
 class RouteCustomerListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -211,6 +222,7 @@ class RouteCustomerListView(APIView):
         })
 
 class RouteCustomerCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -223,6 +235,7 @@ class RouteCustomerCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RouteCustomerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         routemapping_id = data.get('routemapping_id')
@@ -243,6 +256,7 @@ class RouteCustomerUpdateView(APIView):
 
 # RouteCustomerMncMcc Views
 class RouteCustomerMncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -259,6 +273,7 @@ class RouteCustomerMncmccListView(APIView):
         })
 
 class RouteCustomerMncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -271,6 +286,7 @@ class RouteCustomerMncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RouteCustomerMncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         routemapping_id = data.get('routemapping_id')
@@ -292,6 +308,7 @@ class RouteCustomerMncmccUpdateView(APIView):
 
 # RouteShared Views
 class RouteSharedListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # Retrieve pagination parameters
         page = request.GET.get('page', 1)
@@ -321,6 +338,7 @@ class RouteSharedListView(APIView):
         })
 
 class RouteSharedCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -333,6 +351,7 @@ class RouteSharedCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RouteSharedUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         routemapping_id = data.get('routemapping_id')
@@ -353,6 +372,7 @@ class RouteSharedUpdateView(APIView):
 
 # RouteSharedMncmcc Views
 class RouteSharedMncmccListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # Retrieve pagination parameters
         page = request.GET.get('page', 1)
@@ -382,6 +402,7 @@ class RouteSharedMncmccListView(APIView):
         })
 
 class RouteSharedMncmccCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -394,6 +415,7 @@ class RouteSharedMncmccCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class RouteSharedMncmccUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         routemapping_id = data.get('routemapping_id')

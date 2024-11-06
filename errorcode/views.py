@@ -6,8 +6,11 @@ from .models import ErrorcodeAccount
 from .serializers import ErrorcodeAccountSerializer
 import base64
 from datetime import datetime
+from rest_framework.permissions import IsAuthenticated
 
 class ErrorcodeAccountListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -30,6 +33,8 @@ class ErrorcodeAccountListView(APIView):
         })
 
 class ErrorcodeAccountCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         data = request.data.copy()
 
@@ -67,6 +72,7 @@ class ErrorcodeAccountCreateView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class ErrorcodeAccountUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['update_date'] = datetime.now().isoformat()  # Set the current timestamp for update_date
@@ -115,6 +121,7 @@ from .models import ErrorcodeCarrier
 from .serializers import ErrorcodeCarrierSerializer
 
 class ErrorcodeCarrierListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -137,6 +144,7 @@ class ErrorcodeCarrierListView(APIView):
         })
 
 class ErrorcodeCarrierCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -166,6 +174,7 @@ class ErrorcodeCarrierCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ErrorcodeCarrierUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         errorcode_id = data.get('errorcode_id')
@@ -189,6 +198,7 @@ from .models import ErrorcodePlatform
 from .serializers import ErrorcodePlatformSerializer
 
 class ErrorcodePlatformListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -221,6 +231,7 @@ class ErrorcodePlatformListView(APIView):
             })
 
 class ErrorcodePlatformCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         serializer = ErrorcodePlatformSerializer(data=data)
@@ -232,6 +243,7 @@ class ErrorcodePlatformCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ErrorcodePlatformUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         errorcode_id = data.get('errorcode_id')
@@ -257,6 +269,7 @@ class ErrorcodePlatformUpdateView(APIView):
 from .models import ErrorcodeCustomer
 from .serializers import ErrorcodeCustomerSerializer
 class ErrorcodeCustomerListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -279,6 +292,7 @@ class ErrorcodeCustomerListView(APIView):
         })
 
 class ErrorcodeCustomerCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -310,6 +324,7 @@ class ErrorcodeCustomerCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ErrorcodeCustomerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['update_date'] = datetime.now().isoformat()  # Set the current timestamp for update_date
@@ -354,6 +369,7 @@ from .models import ErrorcodeSmsServiceProvider
 from .serializers import ErrorcodeSmsServiceProviderSerializer
 
 class ErrorcodeSmsServiceProviderListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -376,6 +392,7 @@ class ErrorcodeSmsServiceProviderListView(APIView):
         })
 
 class ErrorcodeSmsServiceProviderCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()  # Set created_date to the current timestamp
@@ -403,6 +420,7 @@ class ErrorcodeSmsServiceProviderCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ErrorcodeSmsServiceProviderUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['update_date'] = datetime.now().isoformat()  # Set the current timestamp for update_date

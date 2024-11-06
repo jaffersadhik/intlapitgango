@@ -7,8 +7,10 @@ from .models import WebhookAccount
 from .serializers import WebhookAccountSerializer
 import base64
 import datetime
+from rest_framework.permissions import IsAuthenticated
 
 class WebhookAccountListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -31,6 +33,7 @@ class WebhookAccountListView(APIView):
         })
 
 class WebhookAccountCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         try:
@@ -56,6 +59,7 @@ class WebhookAccountCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class WebhookAccountUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         account_id = data.get('webhookaccount_id')
@@ -103,6 +107,7 @@ import base64
 import datetime
 
 class WebhookCustomerListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -125,6 +130,7 @@ class WebhookCustomerListView(APIView):
         })
 
 class WebhookCustomerCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
        
@@ -145,6 +151,7 @@ class WebhookCustomerCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class WebhookCustomerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         customer_id = data.get('webhookcustomer_id')
@@ -183,6 +190,7 @@ from .serializers import WebhookParameterIndexSerializer
 import datetime
 
 class WebhookParameterIndexListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -205,6 +213,7 @@ class WebhookParameterIndexListView(APIView):
         })
 
 class WebhookParameterIndexCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -224,6 +233,7 @@ class WebhookParameterIndexCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class WebhookParameterIndexUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         webhookparameter_id = data.get('webhookparameter_id')

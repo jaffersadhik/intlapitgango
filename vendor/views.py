@@ -11,7 +11,10 @@ from .serializers import CarrierSerializer,SMSCSerializer
 import base64
 from datetime import datetime
 from django.db.models import Q
+from rest_framework.permissions import IsAuthenticated
+
 class CarrierListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         all_data = request.GET.get('all', 'false').lower() == 'true'  # Check if 'all=true' is passed
         search_query = request.GET.get('search', '')
@@ -46,6 +49,7 @@ class CarrierListView(APIView):
 
 
 class CarrierCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -58,6 +62,7 @@ class CarrierCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CarrierUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         carriername = data.get('carriername')
@@ -76,6 +81,7 @@ class CarrierUpdateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class SMSCListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         all_smsc = request.GET.get('all', False)
 
@@ -112,6 +118,7 @@ class SMSCListView(APIView):
         })
 
 class SMSCCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         
@@ -147,6 +154,7 @@ class SMSCCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SMSCUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         smscid = data.get('smscid')
@@ -188,6 +196,7 @@ import base64
 
 # DataCenter Views
 class DataCenterListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -218,6 +227,7 @@ class DataCenterListView(APIView):
             'total_items': paginator.count
         })
 class DataCenterCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -230,6 +240,7 @@ class DataCenterCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class DataCenterUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         dcname = data.get('dcname')
@@ -250,6 +261,7 @@ class DataCenterUpdateView(APIView):
 
 # KannelHost Views
 class KannelHostListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -272,6 +284,7 @@ class KannelHostListView(APIView):
         })
 
 class KannelHostCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         data['created_date'] = datetime.now().isoformat()
@@ -284,6 +297,7 @@ class KannelHostCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class KannelHostUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         kannelhostname = data.get('kannelhostname')
@@ -304,6 +318,7 @@ class KannelHostUpdateView(APIView):
 
 # DCSmscid Views
 class DCSmscidListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -326,6 +341,7 @@ class DCSmscidListView(APIView):
         })
 
 class DCSmscidCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         try:
@@ -355,6 +371,7 @@ class DCSmscidCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class DCSmscidUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         username = data.get('username')

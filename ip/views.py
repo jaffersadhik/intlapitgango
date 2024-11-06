@@ -7,10 +7,12 @@ from .models import IpAccount, IpCustomer, IpShared
 from .serializers import IpAccountSerializer, IpCustomerSerializer, IpSharedSerializer
 import base64
 from datetime import datetime
+from rest_framework.permissions import IsAuthenticated
 
 # IP Account Views
 
 class IpAccountListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -32,6 +34,7 @@ class IpAccountListView(APIView):
         })
 
 class IpAccountCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         try:
@@ -60,6 +63,7 @@ class IpAccountCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class IpAccountUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         account_id = data.get('ipaccount_id')
@@ -97,6 +101,7 @@ class IpAccountUpdateView(APIView):
 # IP Customer Views
 
 class IpCustomerListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -119,6 +124,7 @@ class IpCustomerListView(APIView):
         })
 
 class IpCustomerCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -145,6 +151,7 @@ class IpCustomerCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class IpCustomerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         customer_id = data.get('ipcustomer_id')
@@ -178,6 +185,7 @@ class IpCustomerUpdateView(APIView):
 # IP Shared Views
 
 class IpSharedListView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         page = request.GET.get('page', 1)
         page_size = request.GET.get('page_size', 10)
@@ -200,6 +208,7 @@ class IpSharedListView(APIView):
         })
 
 class IpSharedCreateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
 
@@ -225,6 +234,7 @@ class IpSharedCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class IpSharedUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         data = request.data.copy()
         ip_id = data.get('ip_id')
